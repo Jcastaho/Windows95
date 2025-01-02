@@ -43,6 +43,10 @@ fun DraggableFolder(
 
     val focusReqester = remember { FocusRequester() }
 
+    LaunchedEffect(folderModel){
+        offset = folderModel.position
+    }
+
 
 
 
@@ -113,6 +117,9 @@ fun DraggableFolder(
                     text = folderModel.name,
                     color = textColor
                 )
+            }
+            Row {
+                Spacer(Modifier.weight(1f))
             }
         }
         if (isEditing) {
