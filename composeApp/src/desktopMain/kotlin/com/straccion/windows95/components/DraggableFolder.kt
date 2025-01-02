@@ -18,7 +18,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.straccion.windows95.model.FolderModel
 import com.straccion.windows95.ui.windowsBlue
 import org.jetbrains.compose.resources.painterResource
@@ -35,7 +39,7 @@ fun DraggableFolder(
 ) {
     var offset by remember { mutableStateOf(folderModel.position) }
 
-    val textColor = if (folderModel.selected) White else Black
+
 
     var newName by remember { mutableStateOf(folderModel.name) }
     var isEditing by remember { mutableStateOf(false) }
@@ -52,7 +56,7 @@ fun DraggableFolder(
 
     Box(
         Modifier.offset(x = folderModel.position.x.dp, y = folderModel.position.y.dp)
-            .size(75.dp)
+            .width(83.dp)
             .pointerInput(Unit) {
                 detectTransformGestures { _, pan, _, _ ->
                     offset = offset.copy(x = offset.x + pan.x, y = offset.y + pan.y)
@@ -88,13 +92,13 @@ fun DraggableFolder(
             ) {
                 Image(
                     modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(Res.drawable.ic_folder),
+                    painter = painterResource(folderModel.icon),
                     contentDescription = "Folder"
                 )
                 if (folderModel.selected) {
                     Icon(
                         modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(Res.drawable.ic_folder),
+                        painter = painterResource(folderModel.icon),
                         contentDescription = "Folder",
                         tint = windowsBlue.copy(alpha = 0.4f)
                     )
@@ -115,7 +119,12 @@ fun DraggableFolder(
                 Text(
                     modifier = Modifier.background(if (folderModel.selected) windowsBlue else Color.Transparent),
                     text = folderModel.name,
-                    color = textColor
+                    maxLines = 2,
+                    fontSize = 13.sp,
+                    style = TextStyle(lineHeight = 0.sp),
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
             Row {

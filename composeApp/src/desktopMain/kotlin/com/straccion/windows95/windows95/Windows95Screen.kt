@@ -12,6 +12,7 @@ import com.straccion.windows95.components.windowbarmenu.WindowsBar
 import com.straccion.windows95.components.windowbarmenu.WindowsBarMenuScreen
 import com.straccion.windows95.extensions.clickableWithoutRipple
 import com.straccion.windows95.extensions.onrightClic
+import com.straccion.windows95.helper.DefaultFoldersProvider
 import com.straccion.windows95.model.FolderModel
 import com.straccion.windows95.model.FolderSortType
 import com.straccion.windows95.model.WindowModel
@@ -19,9 +20,7 @@ import com.straccion.windows95.model.WindowModel
 @Composable
 fun Windows95Screen() {
     var showWindowsMenu by remember { mutableStateOf(false) }
-    val fakefolder = FolderModel(0, "Juan", Offset(x = 0f, y = 0f))
-    val fakefolder2 = FolderModel(1, "Juan555", Offset(x = 0f, y = 80f))
-    var folders by remember { mutableStateOf(listOf<FolderModel>(fakefolder, fakefolder2)) }
+    var folders by remember { mutableStateOf(DefaultFoldersProvider.default) }
     var windows by remember { mutableStateOf(listOf<WindowModel>()) }
 
     var showRightClickMenu by remember { mutableStateOf(false) }

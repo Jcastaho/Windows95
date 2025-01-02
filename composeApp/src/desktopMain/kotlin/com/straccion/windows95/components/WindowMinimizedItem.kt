@@ -1,5 +1,6 @@
 package com.straccion.windows95.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -11,6 +12,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.straccion.windows95.extensions.patternBackground
 import com.straccion.windows95.model.WindowModel
+import org.jetbrains.compose.resources.painterResource
+import windows95.composeapp.generated.resources.Res
+import windows95.composeapp.generated.resources.ic_folder_open
 
 @Composable
 fun WindowMinimizedItem(
@@ -30,6 +34,12 @@ fun WindowMinimizedItem(
                     modifier = Modifier.fillMaxSize(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    Spacer(modifier = Modifier.width(1.dp))
+                    Image(
+                        modifier = Modifier.size(19.dp),
+                        painter = painterResource(Res.drawable.ic_folder_open),
+                        contentDescription = "icon"
+                    )
                     Spacer(Modifier.width(6.dp))
                     Text(
                         windowModel.title,
@@ -44,6 +54,12 @@ fun WindowMinimizedItem(
                     modifier = Modifier.fillMaxSize().padding(2.dp).patternBackground(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    Spacer(modifier = Modifier.width(1.dp))
+                    Image(
+                        modifier = Modifier.size(19.dp),
+                        painter = painterResource(Res.drawable.ic_folder_open),
+                        contentDescription = "icon"
+                    )
                     Spacer(Modifier.width(6.dp))
                     Text(
                         windowModel.title,

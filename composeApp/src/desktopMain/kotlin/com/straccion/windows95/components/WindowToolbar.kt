@@ -1,5 +1,6 @@
 package com.straccion.windows95.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -14,6 +15,7 @@ import com.straccion.windows95.ui.backgroundComponent
 import com.straccion.windows95.ui.disabledTextColor
 import com.straccion.windows95.ui.windowsBlue
 import org.jetbrains.compose.resources.painterResource
+import windows95.composeapp.generated.resources.*
 import windows95.composeapp.generated.resources.Res
 import windows95.composeapp.generated.resources.ic_close
 import windows95.composeapp.generated.resources.ic_expand
@@ -38,6 +40,12 @@ fun WindowToolbar(
             .background(backgroundColor),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Spacer(modifier = Modifier.width(1.dp))
+        Image(
+            modifier = Modifier.size(19.dp),
+            painter = painterResource(Res.drawable.ic_folder_open),
+            contentDescription = "icon"
+        )
         Spacer(modifier = Modifier.width(4.dp))
         Text(text = title, color = textColor)
         Spacer(Modifier.weight(1f))
