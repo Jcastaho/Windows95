@@ -11,7 +11,8 @@ import com.straccion.windows95.ui.backgroundComponent
 
 @Composable
 fun BackgroundComponent(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
+    selected: Boolean = false,
     content: @Composable () -> Unit
 ) {
     Box(
@@ -24,7 +25,7 @@ fun BackgroundComponent(
 
                 //Lateral izquierdo 1 linea
                 drawLine(
-                    color = Color.White,
+                    color = if (selected)Color.Black else Color.White,
                     start = Offset(0f, 0f),
                     end = Offset(0f, height),
                     strokeWidth = strokeWidth
@@ -32,7 +33,7 @@ fun BackgroundComponent(
 
                 //Lateral izquierdo 2 linea
                 drawLine(
-                    color = Color.White,
+                    color = if (selected)Color.DarkGray else Color.White,
                     start = Offset(spacing, 0f),
                     end = Offset(spacing, height),
                     strokeWidth = strokeWidth
@@ -40,7 +41,7 @@ fun BackgroundComponent(
 
                 // superior 1 linea
                 drawLine(
-                    color = Color.White,
+                    color = if (selected)Color.Black else Color.White,
                     start = Offset(0f, 0f),
                     end = Offset(width, 0f),
                     strokeWidth = strokeWidth
@@ -48,7 +49,7 @@ fun BackgroundComponent(
 
                 // superior 2 linea
                 drawLine(
-                    color = Color.White,
+                    color = if (selected)Color.DarkGray else Color.White,
                     start = Offset(0f, spacing),
                     end = Offset(width, spacing),
                     strokeWidth = strokeWidth
@@ -57,7 +58,7 @@ fun BackgroundComponent(
 
                 //Lateral derecho 1 linea
                 drawLine(
-                    color = Color.Black,
+                    color = if (selected)Color.White else Color.Black,
                     start = Offset(width, 0f),
                     end = Offset(width, height),
                     strokeWidth = strokeWidth
@@ -65,7 +66,7 @@ fun BackgroundComponent(
 
                 //Lateral derecho 2 linea
                 drawLine(
-                    color = Color.DarkGray,
+                    color = if (selected)Color.White else Color.DarkGray,
                     start = Offset(width - spacing, 0f),
                     end = Offset(width - spacing, height),
                     strokeWidth = strokeWidth
@@ -74,7 +75,7 @@ fun BackgroundComponent(
 
                 //Inferior 1 linea
                 drawLine(
-                    color = Color.Black,
+                    color = if (selected)Color.White else Color.Black,
                     start = Offset(0f, height),
                     end = Offset(width, height),
                     strokeWidth = strokeWidth
@@ -82,7 +83,7 @@ fun BackgroundComponent(
 
                 //Inferior 2 linea
                 drawLine(
-                    color = Color.DarkGray,
+                    color = if (selected)Color.White else Color.DarkGray,
                     start = Offset(0f, height - spacing),
                     end = Offset(width, height - spacing),
                     strokeWidth = strokeWidth

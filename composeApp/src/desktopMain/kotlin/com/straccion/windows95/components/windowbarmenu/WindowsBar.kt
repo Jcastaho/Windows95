@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,14 +13,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.straccion.windows95.components.WindowMinimizedItem
 import com.straccion.windows95.components.WindowsButton
+import com.straccion.windows95.model.WindowModel
 import com.straccion.windows95.ui.backgroundComponent
 import org.jetbrains.compose.resources.painterResource
 import windows95.composeapp.generated.resources.Res
 import windows95.composeapp.generated.resources.winlogo
 
 @Composable
-fun WindowsBar(onWindowsButtonSelected: () -> Unit) {
+fun WindowsBar(
+    windows: List<WindowModel>,
+    onClickMinimizedWindow: (WindowModel) -> Unit,
+    onWindowsButtonSelected: () -> Unit
+) {
     Column {
         Box(modifier = Modifier.height(1.dp).fillMaxWidth().background(Color.White))
         Row(
@@ -55,7 +62,15 @@ fun WindowsBar(onWindowsButtonSelected: () -> Unit) {
             Row(
                 modifier = Modifier
                     .weight(1f)
-            ) { }
+            ) {
+                windows.forEach { window ->
+                    key(window.id) {
+                        WindowMinimizedItem(window) {
+                            onClickMinimizedWindow(window)
+                        }
+                    }
+                }
+            }
             InformationBar()
         }
     }
